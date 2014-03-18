@@ -56,5 +56,15 @@ namespace Rackspace.Cloud.Server.Common.Configuration {
             // This is a | separated values. This project is in .NET 2.0, did not want to parse this out here. Let the caller handle converting them into list.
             get { return ConfigurationManager.AppSettings["FirewallRoleNames"]; }
         }
+
+        public static string PreHookPath(string command)
+        {
+            return ConfigurationManager.AppSettings[string.Format("{0}_pre", command.ToLower())];
+        }
+
+        public static string PostHookPath(string command)
+        {
+            return ConfigurationManager.AppSettings[string.Format("{0}_post", command.ToLower())];
+        }
     }
 }

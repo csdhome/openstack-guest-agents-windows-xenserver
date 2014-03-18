@@ -20,6 +20,7 @@ using Rackspace.Cloud.Server.Agent.Interfaces;
 
 namespace Rackspace.Cloud.Server.Agent.Commands
 {
+    [PreAndPostCommand]
     public class Features : IExecutableCommand
     {
         public ExecutableResult Execute(string value)

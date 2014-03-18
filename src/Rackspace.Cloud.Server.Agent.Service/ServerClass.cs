@@ -20,8 +20,10 @@ using System.Timers;
 using Rackspace.Cloud.Server.Agent.Commands;
 using Rackspace.Cloud.Server.Agent.Interfaces;
 using Rackspace.Cloud.Server.Common.Logging;
+using Rackspace.Cloud.Server.Common.Restart;
 using StructureMap;
 using StructureMap.Configuration.DSL;
+using Rackspace.Cloud.Server.Common.Commands;
 
 namespace Rackspace.Cloud.Server.Agent.Service {
     public class ServerClass {
@@ -38,6 +40,8 @@ namespace Rackspace.Cloud.Server.Agent.Service {
 
             const int TIMER_INTERVAL_IS_SIX_SECONDS = 6000;
 
+            RestartManager.RestartNeeded = false;
+            CommandsController.ProcessCommands = true;
             _timer = new ProdTimer { Interval = TIMER_INTERVAL_IS_SIX_SECONDS };
             _timer.Elapsed(TimerElapsed);
             
@@ -54,6 +58,7 @@ namespace Rackspace.Cloud.Server.Agent.Service {
         public void Onstop() {
             LogManager.ShouldBeLogging = true;
             _logger.Log("Agent Service Stopping ...");
+            CommandsController.ProcessCommands = false;
             _timer.Enabled = false;
         }
 

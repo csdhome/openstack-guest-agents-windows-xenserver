@@ -66,12 +66,14 @@
   <ItemGroup>
     <Compile Include="AgentUpdate\AgentUpdateInfo.cs" />
     <Compile Include="AgentUpdate\IAgentGetter.cs" />
+    <Compile Include="Commands\CommandsController.cs" />
     <Compile Include="Communication\Connector.cs" />
     <Compile Include="Configuration\SvcConfiguration.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\LogManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Restart\RestartManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

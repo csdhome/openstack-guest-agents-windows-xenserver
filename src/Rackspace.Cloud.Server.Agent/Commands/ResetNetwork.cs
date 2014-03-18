@@ -23,6 +23,7 @@ namespace Rackspace.Cloud.Server.Agent.Commands
     /// <summary>
     /// Do not change name unless the server team is changing the command name in xen store.
     /// </summary>
+    [PreAndPostCommand]
     public class ResetNetwork : IExecutableCommand
     {
         private readonly ISetNetworkInterface _setNetworkInterface;
@@ -58,9 +59,9 @@ namespace Rackspace.Cloud.Server.Agent.Commands
             _setProviderData.Execute(providerData);
 
             var hostname = _xenStore.ReadVmData("hostname");
-            _setHostname.SetHostname(hostname);
+            var hostnameResult = _setHostname.SetHostname(hostname);
 
-            return new ExecutableResult();
+            return new ExecutableResult() { ExitCode = hostnameResult };
         }
     }
 }
